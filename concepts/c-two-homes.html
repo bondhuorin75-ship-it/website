@@ -1,0 +1,246 @@
+<title>Noor Two Homes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wdth,wght@75..125,300..800&family=Anek+Bangla:wdth,wght@75..125,300..800&display=swap" rel="stylesheet">
+<style>
+/* Layout: bilingual by design. Big budget dial up front that live-filters homes; a path from "first call" to "keys" that fills as you scroll. One font family that speaks both English and Bangla. */
+:root{
+  --paper:#f7f9f6;     /* page, a faint green-white */
+  --ink:#10251d;       /* bottle-green ink */
+  --leaf:#1d6b4f;      /* primary green */
+  --sun:#e0533a;       /* single warm accent */
+  --soft:#53665d;
+  --line:#d8e2dc;
+  --card:#ffffff;
+  --display:"Anek Latin","Anek Bangla","Noto Sans Bengali",system-ui,sans-serif;
+  --body:"Anek Latin","Anek Bangla","Noto Sans Bengali",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0c1713;--ink:#e6efe9;--leaf:#5fc79c;--sun:#ff7a5c;--soft:#9db1a7;--line:#22352d;--card:#13221c;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0c1713;--ink:#e6efe9;--leaf:#5fc79c;--sun:#ff7a5c;--soft:#9db1a7;--line:#22352d;--card:#13221c;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 18px/1.55 var(--body);font-variation-settings:"wdth" 100;overflow-x:hidden}
+html[lang=bn] body{font-family:"Anek Bangla","Anek Latin",system-ui,sans-serif}
+h1,h2,h3{margin:0;line-height:1;text-wrap:balance;font-weight:700}
+a{color:inherit}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.in{max-width:1180px;margin:0 auto}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+[data-t]{transition:opacity .25s}
+.fading [data-t]{opacity:0}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+nav .in{display:flex;align-items:center;gap:22px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;text-decoration:none;margin-right:auto;font-variation-settings:"wdth" 115}
+.logo i{width:16px;height:16px;border-radius:50%;background:var(--sun)}
+nav a.l{text-decoration:none;font-weight:500}
+@media(max-width:760px){nav a.l{display:none}}
+.lang{display:flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:transparent;color:var(--ink);font:600 .9rem var(--body);padding:7px 14px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+
+/* hero */
+.hero{padding-block:64px 40px}
+.hero .in{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+@media(max-width:900px){.hero .in{grid-template-columns:1fr}}
+.eyebrow{font-weight:600;color:var(--leaf);font-size:.95rem}
+.hero h1{font-size:clamp(3rem,8vw,6.4rem);font-weight:750;letter-spacing:-.02em;margin:14px 0 22px;font-variation-settings:"wdth" 82}
+html[lang=bn] .hero h1{line-height:1.15;letter-spacing:0}
+.hero h1 .sun{color:var(--sun)}
+.hero p{font-size:1.15rem;color:var(--soft);max-width:48ch;margin:0}
+.route{position:relative;aspect-ratio:1;max-width:100%;width:100%}
+.route svg{width:100%;height:100%;display:block}
+.route .dash{stroke-dasharray:6 8;animation:march 1.2s linear infinite}
+@keyframes march{to{stroke-dashoffset:-14}}
+.route text{font:600 15px var(--body);fill:var(--ink)}
+.route .sub{font-weight:400;fill:var(--soft);font-size:13px}
+
+/* budget dial */
+.budget{padding-block:56px 80px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(22px,4vw,44px)}
+.panel .top{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:end}
+@media(max-width:820px){.panel .top{grid-template-columns:1fr}}
+.panel h2{font-size:clamp(2rem,4.4vw,3.2rem);font-variation-settings:"wdth" 88}
+.panel .q{color:var(--soft);margin-top:10px}
+.big{font-size:clamp(3rem,8vw,5.6rem);font-weight:800;font-variant-numeric:tabular-nums;font-variation-settings:"wdth" 78;color:var(--leaf);line-height:1}
+.big small{font-size:.32em;font-weight:500;color:var(--soft);margin-left:6px}
+input[type=range]{width:100%;accent-color:var(--leaf);height:28px;margin-top:12px}
+.ctrl{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:10px;color:var(--soft);font-size:.95rem}
+.ctrl select{font:inherit;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px}
+.reach{margin-top:26px;padding-top:22px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline}
+.reach b{font-size:1.8rem;font-variant-numeric:tabular-nums}
+.homes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:26px}
+.home{border:1.5px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:6px;transition:opacity .4s,transform .4s,border-color .3s;background:var(--paper);text-decoration:none}
+.home:hover{border-color:var(--leaf)}
+.home.out{opacity:.28;transform:scale(.97)}
+.home .top2{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.home .p{font-weight:750;font-size:1.4rem;font-variant-numeric:tabular-nums}
+.home .fit{font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--leaf);color:var(--paper)}
+.home.out .fit{background:var(--line);color:var(--soft)}
+.home h3{font-size:1.1rem;font-weight:600}
+.home .m{color:var(--soft);font-size:.92rem}
+.fine{font-size:.82rem;color:var(--soft);margin-top:18px}
+
+/* path */
+.path{padding-block:80px}
+.path h2{font-size:clamp(2.2rem,5vw,4rem);font-variation-settings:"wdth" 85;max-width:16ch}
+.steps{position:relative;margin-top:44px;display:grid;gap:0;padding-left:46px}
+.steps::before{content:"";position:absolute;left:14px;top:6px;bottom:6px;width:3px;background:var(--line);border-radius:3px}
+.steps .fill{position:absolute;left:14px;top:6px;width:3px;background:var(--sun);border-radius:3px;height:0;transition:height .15s linear}
+.st{position:relative;padding-bottom:42px;max-width:620px}
+.st::before{content:"";position:absolute;left:-40px;top:4px;width:18px;height:18px;border-radius:50%;background:var(--paper);border:3px solid var(--line);transition:border-color .3s,background .3s}
+.st.on::before{border-color:var(--sun);background:var(--sun)}
+.st h3{font-size:1.5rem;font-weight:650}
+.st p{margin:6px 0 0;color:var(--soft)}
+.st .when{font-size:.85rem;font-weight:600;color:var(--leaf)}
+
+/* voices */
+.voices{padding-block:40px 90px}
+.vgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:16px}
+@media(max-width:900px){.vgrid{grid-template-columns:1fr}}
+.v{border-radius:22px;padding:28px;background:var(--card);border:1px solid var(--line)}
+.v:first-child{background:var(--leaf);color:var(--paper);border-color:var(--leaf)}
+.v p{margin:0 0 14px;font-size:1.15rem;font-weight:500}
+.v:first-child p{font-size:1.6rem;line-height:1.25;font-weight:600}
+.v span{font-size:.9rem;opacity:.75}
+
+.talk{background:var(--ink);color:var(--paper);padding-block:80px}
+.talk .in{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:860px){.talk .in{grid-template-columns:1fr}}
+.talk h2{font-size:clamp(2.4rem,6vw,4.6rem);font-variation-settings:"wdth" 82}
+.opts{display:grid;gap:10px}
+.opts button{display:flex;justify-content:space-between;align-items:center;text-align:left;background:transparent;color:var(--paper);border:1.5px solid color-mix(in srgb,var(--paper) 30%,transparent);border-radius:16px;padding:18px 20px;font:600 1.1rem var(--body);cursor:pointer;transition:background .2s,border-color .2s}
+.opts button:hover,.opts button[aria-pressed=true]{background:var(--sun);border-color:var(--sun);color:#fff}
+.reply{min-height:3em;margin-top:6px;font-size:1rem;opacity:.9}
+footer{padding-block:28px;font-size:.88rem;color:var(--soft)}
+.concept{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--sun);color:#fff;font:600 .75rem var(--body);padding:6px 12px;border-radius:999px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<nav class="g"><div class="in">
+  <a class="logo" href="#top"><i></i>Noor The Realtor</a>
+  <a class="l" href="#budget" data-t="navHomes"></a><a class="l" href="#path" data-t="navPath"></a><a class="l" href="#talk" data-t="navTalk"></a>
+  <div class="lang" role="group" aria-label="Language"><button id="en" aria-pressed="true">EN</button><button id="bn" aria-pressed="false">বাংলা</button></div>
+</div></nav>
+
+<header class="hero g" id="top"><div class="in">
+  <div>
+    <div class="eyebrow" data-t="eyebrow"></div>
+    <h1 data-t="h1" data-html></h1>
+    <p data-t="lead"></p>
+  </div>
+  <div class="route" aria-hidden="true">
+    <svg viewBox="0 0 400 400">
+      <circle cx="200" cy="200" r="180" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="120" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <path class="dash" d="M95 300 C 120 120, 280 120, 300 110" fill="none" stroke="var(--sun)" stroke-width="3"/>
+      <circle cx="95" cy="300" r="10" fill="var(--leaf)"/>
+      <circle cx="300" cy="110" r="14" fill="var(--sun)"/>
+      <path d="M291 112 L300 103 L309 112 V118 H291 Z" fill="#fff"/>
+      <text x="40" y="336" data-t="from"></text><text x="40" y="354" class="sub">23.8° N</text>
+      <text x="240" y="76" data-t="to"></text><text x="240" y="94" class="sub">47.6° N · 52.7° W</text>
+    </svg>
+  </div>
+</div></header>
+
+<section class="budget g" id="budget"><div class="in"><div class="panel">
+  <div class="top">
+    <div><h2 data-t="bH"></h2><p class="q" data-t="bQ"></p></div>
+    <div>
+      <div class="big"><span id="pay">$2,200</span><small data-t="perMonth"></small></div>
+      <input type="range" id="slide" min="1000" max="4500" step="50" value="2200" aria-label="Monthly payment">
+      <div class="ctrl"><label for="down" data-t="down"></label><select id="down"><option value=".05">5%</option><option value=".1" selected>10%</option><option value=".2">20%</option></select><span data-t="rate"></span></div>
+    </div>
+  </div>
+  <div class="reach"><span data-t="reach"></span><b id="max">$0</b></div>
+  <div class="homes" id="homes"></div>
+  <p class="fine" data-t="fine"></p>
+</div></div></section>
+
+<section class="path g" id="path"><div class="in">
+  <div class="eyebrow" data-t="pE"></div>
+  <h2 data-t="pH"></h2>
+  <div class="steps" id="steps"><div class="fill" id="fill"></div></div>
+</div></section>
+
+<section class="voices g"><div class="in vgrid" id="voices"></div></section>
+
+<section class="talk g" id="talk"><div class="in">
+  <div><h2 data-t="tH"></h2><p style="opacity:.8;margin-top:14px">+1 (709) 680-7582 · info@noortherealtor.ca</p></div>
+  <div><div class="opts" id="opts"></div><p class="reply" id="reply" aria-live="polite"></p></div>
+</div></section>
+<footer class="g"><div class="in" data-t="foot"></div></footer>
+<div class="concept">Concept C · Two Homes</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const T={
+en:{navHomes:"Homes",navPath:"How it works",navTalk:"Talk to Noor",eyebrow:"Realtor in St. John’s · English & Bangla",
+h1:'From one home <span class="sun">to the next.</span>',lead:"I moved to St. John’s eight years ago. Now I help newcomers, first-time buyers and sellers make the move with clear numbers and no pressure.",
+from:"Dhaka",to:"St. John’s",bH:"What can you afford?",bQ:"Drag to set a monthly payment you’re comfortable with. The homes below update as you go.",perMonth:"/ month",down:"Down payment",rate:"Rate 4.49% · 25 years",
+reach:"You could look at homes up to",fine:"Estimate only: principal and interest with Canadian semi-annual compounding. Mortgage insurance, property tax and heat are extra. Noor will run your real numbers.",
+fits:"In budget",stretch:"Stretch",pE:"Buying with Noor",pH:"Five steps from first call to keys.",
+steps:[["Week 1","A first conversation","Coffee or a call. What you need, where you work, school zones, and what feels like home."],["Week 1–2","Credit and down payment","I connect you with a mortgage specialist and explain first-time buyer programs. New to Canada? We plan around a short credit history."],["Week 2–6","Viewing homes","We see homes together, in person or by video. I tell you what each one would really sell for."],["When you’re ready","Your offer","I write and negotiate the offer, with conditions for inspection and financing that protect you."],["Closing day","Keys in hand","Inspection, lawyer, final walk-through. Then the keys are yours."]],
+voices:[["Noor made our first purchase feel calm and clear. We never felt rushed.","First-time buyers, Mount Pearl"],["Our home sold quickly and the pricing advice was spot on.","Seller, St. John’s"],["Relocating was daunting. Noor helped us find the right place.","Newcomer family, Paradise"]],
+tH:"Where do you want to start?",opts:[["I want to buy","Great. Tell Noor your budget from the dial above and Noor will send matching homes within one business day."],["I want to sell","Noor will prepare a free valuation using recent sales on your street."],["I’m new to Canada","Noor will walk you through credit, down payment and first-time buyer programs, in English or Bangla."]],
+foot:"Noor The Realtor · Brokerage name and disclaimer to be added."},
+bn:{navHomes:"বাড়ি",navPath:"কীভাবে কাজ করে",navTalk:"নূরের সাথে কথা বলুন",eyebrow:"সেন্ট জনস-এর রিয়েলটর · বাংলা ও ইংরেজি",
+h1:'এক ঘর থেকে <span class="sun">নতুন ঘরে।</span>',lead:"আট বছর আগে আমি সেন্ট জনস-এ এসেছিলাম। এখন আমি নতুন অভিবাসী, প্রথমবার বাড়ি কেনা ক্রেতা ও বিক্রেতাদের সহজ হিসাব আর কোনো চাপ ছাড়াই সাহায্য করি।",
+from:"ঢাকা",to:"সেন্ট জনস",bH:"আপনার সাধ্যে কত?",bQ:"মাসে কত দিতে স্বচ্ছন্দ, তা টেনে ঠিক করুন। নিচের বাড়িগুলো সাথে সাথে বদলে যাবে।",perMonth:"/ মাসে",down:"ডাউন পেমেন্ট",rate:"সুদ ৪.৪৯% · ২৫ বছর",
+reach:"আপনি এই দাম পর্যন্ত বাড়ি দেখতে পারেন",fine:"আনুমানিক হিসাব: আসল ও সুদ, কানাডার অর্ধবার্ষিক চক্রবৃদ্ধি অনুযায়ী। মর্টগেজ ইন্স্যুরেন্স, প্রপার্টি ট্যাক্স ও হিটিং আলাদা। আসল হিসাব নূর করে দেবেন।",
+fits:"বাজেটে",stretch:"একটু বেশি",pE:"নূরের সাথে বাড়ি কেনা",pH:"প্রথম কথা থেকে চাবি হাতে, পাঁচ ধাপে।",
+steps:[["সপ্তাহ ১","প্রথম আলাপ","চা বা ফোনে কথা। আপনার কী দরকার, কোথায় কাজ, স্কুল, আর কোনটা ঘরের মতো লাগে।"],["সপ্তাহ ১–২","ক্রেডিট ও ডাউন পেমেন্ট","মর্টগেজ বিশেষজ্ঞের সাথে পরিচয় করিয়ে দিই, প্রথমবার ক্রেতাদের প্রোগ্রাম বুঝিয়ে বলি। কানাডায় নতুন? অল্প ক্রেডিট ইতিহাস নিয়েও পরিকল্পনা করা যায়।"],["সপ্তাহ ২–৬","বাড়ি দেখা","একসাথে বাড়ি দেখি, সামনাসামনি বা ভিডিওতে। প্রতিটি বাড়ির আসল দাম কত হওয়া উচিত, তা জানাই।"],["আপনি প্রস্তুত হলে","আপনার অফার","অফার লিখি ও দর কষাকষি করি, ইন্সপেকশন ও ফাইন্যান্সিং-এর শর্ত দিয়ে আপনাকে সুরক্ষিত রাখি।"],["ক্লোজিং-এর দিন","চাবি হাতে","ইন্সপেকশন, আইনজীবী, শেষবার ঘুরে দেখা। তারপর চাবি আপনার।"]],
+voices:[["নূরের সাহায্যে আমাদের প্রথম বাড়ি কেনা শান্ত ও পরিষ্কার ছিল। কখনো তাড়াহুড়ো মনে হয়নি।","প্রথমবার ক্রেতা, মাউন্ট পার্ল"],["আমাদের বাড়ি দ্রুত বিক্রি হয়েছে, দামের পরামর্শ একদম ঠিক ছিল।","বিক্রেতা, সেন্ট জনস"],["নতুন জায়গায় আসা কঠিন ছিল। নূর আমাদের সঠিক বাড়ি খুঁজে দিয়েছেন।","নতুন পরিবার, প্যারাডাইস"]],
+tH:"কোথা থেকে শুরু করবেন?",opts:[["আমি বাড়ি কিনতে চাই","দারুণ। উপরের হিসাব থেকে আপনার বাজেট জানান, নূর এক কার্যদিবসের মধ্যে মানানসই বাড়ি পাঠাবেন।"],["আমি বাড়ি বিক্রি করতে চাই","আপনার এলাকার সাম্প্রতিক বিক্রির ভিত্তিতে নূর বিনামূল্যে মূল্যায়ন করে দেবেন।"],["আমি কানাডায় নতুন","ক্রেডিট, ডাউন পেমেন্ট ও প্রথমবার ক্রেতাদের প্রোগ্রাম, নূর বাংলায় বুঝিয়ে বলবেন।"]],
+foot:"নূর দ্য রিয়েলটর · ব্রোকারেজের নাম ও প্রয়োজনীয় ঘোষণা যোগ করা হবে। (বাংলা লেখা নূরের পর্যালোচনার জন্য খসড়া)"}};
+const L=[
+{addr:"18 Elizabeth Dr",area:"Gander",price:265000,beds:3,baths:1},
+{addr:"12 Duckworth St, Unit 4",area:"St. John’s",price:279000,beds:2,baths:1},
+{addr:"26 Park Ave",area:"Mount Pearl",price:365000,beds:3,baths:2},
+{addr:"7 Kenmount Terrace",area:"Mount Pearl",price:389000,beds:3,baths:2},
+{addr:"21 Fowler’s Rd",area:"Conception Bay South",price:415000,beds:3,baths:2},
+{addr:"55 Karwood Dr",area:"Paradise",price:459000,beds:4,baths:3},
+{addr:"14 Waterford Bridge Rd",area:"St. John’s",price:549000,beds:3,baths:2},
+{addr:"8 Battery View Ln",area:"St. John’s",price:689000,beds:4,baths:3}];
+let lang='en';
+const money=n=>new Intl.NumberFormat(lang==='bn'?'bn-BD':'en-CA',{style:'currency',currency:'CAD',maximumFractionDigits:0}).format(n).replace('CA$','$');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function maxPrice(pay,down){const r=.0449,n=300,i=Math.pow(1+r/2,1/6)-1;const loan=pay*(1-Math.pow(1+i,-n))/i;return loan/(1-down)}
+let shown=0;
+function update(){
+  const pay=+$('slide').value,down=+$('down').value,mp=maxPrice(pay,down),t=T[lang];
+  $('pay').textContent=money(pay);
+  // count toward new number
+  const from=shown,to=mp,t0=performance.now();
+  const step=now=>{const p=reduce?1:Math.min(1,(now-t0)/350);shown=from+(to-from)*p;$('max').textContent=money(Math.round(shown/1000)*1000);if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step);
+  $('homes').querySelectorAll('.home').forEach((h,k)=>{const ok=L[k].price<=mp;h.classList.toggle('out',!ok);h.querySelector('.fit').textContent=ok?t.fits:t.stretch});
+}
+function buildHomes(){
+  $('homes').innerHTML=L.map(l=>`<a class="home" href="#talk"><div class="top2"><span class="p">${money(l.price)}</span><span class="fit"></span></div><h3>${l.addr}</h3><div class="m">${l.area} · ${l.beds} bd · ${l.baths} ba</div></a>`).join('');
+}
+function render(){
+  const t=T[lang];document.documentElement.lang=lang;
+  document.querySelectorAll('[data-t]').forEach(el=>{const v=t[el.dataset.t];if(typeof v!=='string')return;if(el.hasAttribute('data-html'))el.innerHTML=v;else el.textContent=v});
+  $('steps').innerHTML='<div class="fill" id="fill"></div>'+t.steps.map(s=>`<div class="st"><div class="when">${s[0]}</div><h3>${s[1]}</h3><p>${s[2]}</p></div>`).join('');
+  $('voices').innerHTML=t.voices.map(v=>`<div class="v"><p>“${v[0]}”</p><span>${v[1]}</span></div>`).join('');
+  $('opts').innerHTML=t.opts.map((o,i)=>`<button data-i="${i}" aria-pressed="false">${o[0]}<span aria-hidden="true">→</span></button>`).join('');
+  $('reply').textContent='';
+  $('opts').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('opts').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('reply').textContent=T[lang].opts[b.dataset.i][1]});
+  buildHomes();update();onScroll();
+}
+function setLang(l){if(l===lang)return;document.body.classList.add('fading');setTimeout(()=>{lang=l;$('en').setAttribute('aria-pressed',l==='en');$('bn').setAttribute('aria-pressed',l==='bn');render();document.body.classList.remove('fading')},reduce?0:220)}
+$('en').onclick=()=>setLang('en');$('bn').onclick=()=>setLang('bn');
+$('slide').oninput=update;$('down').onchange=update;
+
+// path fills as you scroll through it
+function onScroll(){
+  const s=$('steps'),r=s.getBoundingClientRect(),mid=innerHeight*.6;
+  const p=Math.max(0,Math.min(1,(mid-r.top)/(r.height-20)));
+  const f=$('fill');if(f)f.style.height=(p*(r.height-12))+'px';
+  s.querySelectorAll('.st').forEach(st=>st.classList.toggle('on',st.getBoundingClientRect().top<mid));
+}
+addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});
+render();
+</script>
